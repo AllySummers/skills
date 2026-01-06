@@ -1,11 +1,13 @@
 ---
-name: Graphite Stacked PRs
-description: >
-  This skill should be used ONLY when working in a Graphite-enabled repository
-  (detected by .git/.graphite_repo_config existing). Use when the user mentions
-  "graphite", "stacked PRs", "gt create", "gt modify", "gt submit", "gt sync",
-  "gt restack", or asks to commit/push changes in a Graphite repo. For repos
-  WITHOUT .git/.graphite_repo_config, use standard git commands instead.
+name: graphite
+description: |
+  Use for Graphite CLI stacked PRs workflow in repos with .git/.graphite_repo_config.
+  Triggers: graphite, stacked PRs, dependent PRs, chained PRs, PR stack, gt create,
+  gt modify, gt submit, gt sync, gt restack, gt log, gt checkout, gt up, gt down,
+  rebase my stack, fix stack conflicts, split PR, land my stack, merge stack,
+  sync with main/trunk, reorder branches, fold commits, amend stack, move branch
+  to different parent, stack out of date, update my stack. For repos WITHOUT
+  .git/.graphite_repo_config, use standard git commands instead.
 ---
 
 # Graphite Stacked PRs Workflow

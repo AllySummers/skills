@@ -3,8 +3,8 @@
   "description": "Claude Code plugins and MCPs for Graphite stacked PRs workflow",
   "plugins": [
     {
-      "name": "graphite-stacked-prs",
-      "path": "./graphite-stacked-prs",
+      "name": "graphite",
+      "path": "./graphite",
       "description": "Graphite CLI workflow for stacked PRs",
       "version": "0.1.0"
     },

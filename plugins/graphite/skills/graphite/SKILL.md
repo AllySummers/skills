@@ -89,7 +89,11 @@ Write PR bodies that explain:
 2. **Why** it changed
 3. **The benefit** or purpose
 
-Keep descriptions casual, concise, and human-like. Avoid corporate speak or overly formal language.
+Keep descriptions casual, concise, and human-like. Avoid corporate speak or overly formal language. Don't wrap long lines with line breaks (unlike git commits). Line breaks are fine for separating paragraphs.
+
+### After Submitting
+
+When returning the PR URL to the user, use the **Graphite PR URL** (e.g., `https://app.graphite.dev/github/pr/...`), not the GitHub PR URL.
 
 ## Stack Philosophy
 

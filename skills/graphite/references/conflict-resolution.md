@@ -23,12 +23,6 @@ gt abort          # Abandon restack, return to previous state
 
 ## Lock File Conflicts
 
-`package-lock.json`, `yarn.lock`, `mix.lock`, etc.
+For **pnpm**: simply run `pnpm install` — pnpm will resolve the conflicted lock file on its own.
 
-Accept either version, then regenerate:
-
-```bash
-git checkout --theirs package-lock.json
-npm install
-git add package-lock.json
-```
+For other package managers (npm, yarn, bun): accept either side of the conflict first, then re-run the install command to regenerate the lock file.

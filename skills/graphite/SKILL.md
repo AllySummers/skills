@@ -1,3 +1,10 @@
+<!--
+  Modified from claude-code-graphite by George Guimarães
+  (https://github.com/georgeguimaraes/claude-code-graphite)
+  Licensed under the Apache License, Version 2.0.
+  Changes: Adapted from Claude Code plugin format to Cursor agent skill;
+  updated MCP server references for Cursor.
+-->
 ---
 name: graphite
 description: |
@@ -24,7 +31,20 @@ When Graphite is detected, use `gt` commands instead of `git` for all commit and
 
 ## MCP Server
 
-A Graphite MCP server may be available (check with `/mcp`). If the `graphite` MCP is connected, it provides tools to work with stacked PRs.
+A Graphite MCP server may be available (requires Graphite CLI v1.6.7+). If the `graphite` MCP server is configured in your Cursor MCP settings, it provides tools to work with stacked PRs.
+
+To set up, add the following to your Cursor MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "graphite": {
+      "command": "gt",
+      "args": ["mcp"]
+    }
+  }
+}
+```
 
 ## Planning Stacks (CRITICAL)
 
@@ -75,10 +95,6 @@ Use these `gt` commands instead of their git equivalents:
 
 ### Commit Messages
 
-Use conventional commits with casual, concise descriptions:
-
-- Start with type: `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `perf:`, `test:`
-- Capitalize after the prefix
 - Keep it brief and human
 - No LLM fluff, no em dashes
 
@@ -90,6 +106,8 @@ Write PR bodies that explain:
 3. **The benefit** or purpose
 
 Keep descriptions casual, concise, and human-like. Avoid corporate speak or overly formal language. Don't wrap long lines with line breaks (unlike git commits). Line breaks are fine for separating paragraphs.
+
+Make sure to check if the repo uses a PR template by checking for the existence of `.github/pull_request_template.md`.
 
 ### After Submitting
 
@@ -103,16 +121,33 @@ Each PR in a stack must be:
 - **Focused** - one logical change per branch
 - **Reviewable** - makes sense on its own (even if it depends on others)
 
-Break large features into functional components:
+### Stacking Frameworks
+
+**Functional component stacks** — one PR per layer:
 - Database changes first
 - Backend logic next
 - Frontend last
 
-Or use iterative stacking:
+**Iterative improvement stacks** — ship and build on top:
 - Basic implementation
 - Error handling
 - Tests
 - Polish
+
+**Refactor/change stacks** — separate cleanup from the fix:
+- PR 1: Refactor the surrounding code
+- PR 2: The actual bug fix or feature
+
+**Version bumps/generated code stacks** — isolate boilerplate:
+- PR 1: Version bump or code generation
+- PR 2: Changes that use the updates
+
+**Riskiness stacks** — isolate risky changes for easy revert:
+- PR 1: Low-risk changes
+- PR 2: High-risk change (easy to revert independently)
+
+**Note:**
+If something is too big to be done atomically in 1 PR, it _may_ be done in a stack of where the top of the stack (or a specific merge-point) passes CI, even if the PRs under it do not. This should rarely be used and should be used as a last resort. If something is split up because of its size for this reason, each PR should make sure to group changes into parts that are easiest to be reviewed together.
 
 ## Navigation
 
@@ -137,6 +172,20 @@ Run `gt sync` regularly (at least daily) to:
 
 When `gt sync` encounters conflicts, it pauses for resolution. See conflict resolution below.
 
+## Checkpointing
+
+Use `gt create` as checkpoints during development without submitting yet. Once the work is in a good state, use `gt fold` to consolidate checkpoint branches into logical PRs before submitting. This prevents creating unnecessary PRs for intermediate work.
+
+```bash
+gt create -am "checkpoint: initial scaffolding"
+# ... more work ...
+gt create -am "checkpoint: wire up endpoints"
+# ... ready to consolidate ...
+gt fold                      # Merge current branch into its parent
+```
+
+If you over-fold, `gt split` can break a branch back apart.
+
 ## Submitting Work
 
 Push changes with:
@@ -148,6 +197,8 @@ gt ss                        # Shorthand for --stack
 ```
 
 Use `--no-interactive` to avoid prompts during submission.
+
+**IMPORTANT:** If you make changes lower in the stack (e.g. via `gt modify`), use `gt submit --stack` instead of `gt submit`. Otherwise upstack PRs won't reflect the changes, and their GitHub diffs will be stale.
 
 ## Conflict Resolution
 

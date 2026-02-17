@@ -1,0 +1,16 @@
+Cursor Skills
+Copyright 2026 Ally Summers
+
+---
+
+skills/graphite/
+
+  Based on claude-code-graphite by George Guimarães
+  (https://github.com/georgeguimaraes/claude-code-graphite)
+  Licensed under the Apache License, Version 2.0.
+
+  Changes from the original:
+  - Restructured from Claude Code plugin format to Cursor agent skill format
+  - Removed Claude Code-specific plugin configuration (.claude-plugin/) and hooks
+  - Removed Graphite MCP plugin (graphite-mcp) — can be configured separately via Cursor MCP settings
+  - Updated skill and documentation references for Cursor compatibility

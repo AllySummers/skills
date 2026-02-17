@@ -16,6 +16,8 @@
 | `gt modify` | `gt m` | Amend staged changes |
 | `gt modify --all` | `gt m -a` | Stage all and amend |
 | `gt modify --commit` | `gt m -c` | Add new commit (not amend) |
+| `gt modify --commit --all --message "msg"` | `gt m -cam "msg"` | Stage all, add new commit with message |
+| `gt modify --into` | `gt m --into` | Amend staged changes to a downstack branch |
 
 ## Syncing & Submitting
 
@@ -42,6 +44,7 @@
 |---------|-------|-------------|
 | `gt move --onto <branch>` | | Move branch to new parent |
 | `gt fold` | | Merge into parent branch |
+| `gt pop` | | Delete branch but keep changes in working tree |
 | `gt split` | `gt sp` | Divide branch into multiple |
 | `gt squash` | `gt sq` | Combine commits into one |
 | `gt reorder` | | Reorder stack interactively |
@@ -63,6 +66,8 @@
 | `gt get [branch]` | | Fetch teammate's stack |
 | `gt track [branch]` | `gt tr` | Track existing git branch |
 | `gt untrack [branch]` | `gt utr` | Stop tracking branch |
+| `gt freeze [branch]` | | Freeze branch to prevent accidental edits |
+| `gt unfreeze [branch]` | | Unfreeze a frozen branch |
 
 ## Branch Management
 

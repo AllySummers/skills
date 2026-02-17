@@ -1,45 +1,30 @@
-# Claude Code Graphite
+# Cursor Skills
 
-Claude Code plugins for [Graphite](https://graphite.dev) stacked PRs workflow.
+A collection of agent skills for [Cursor](https://cursor.com).
 
 ## Installation
 
-```bash
-claude plugin marketplace add georgeguimaraes/claude-code-graphite
-```
-
-Install all plugins:
+Install skills using the [skills CLI](https://skills.sh/):
 
 ```bash
-claude plugin install graphite@claude-code-graphite && \
-claude plugin install graphite-mcp@claude-code-graphite
+npx skills add AllySummers/skills
 ```
 
-## Prerequisites
+Or clone the repo directly and reference the skills you need:
 
-| Platform | Command |
-|----------|---------|
-| macOS | `brew install withgraphite/tap/graphite` |
-| npm | `npm install -g @withgraphite/graphite-cli@stable` |
+```bash
+git clone https://github.com/AllySummers/skills.git .cursor/skills
+```
 
-> **Note:** MCP server requires Graphite CLI v1.6.7 or later.
+## Skills
 
----
-
-## Plugins
-
-### Overview
-
-| Plugin | Type | Description |
-|--------|------|-------------|
-| [graphite](#graphite) | Skill + Hook | gt commands, stack planning, conflict resolution |
-| [graphite-mcp](#graphite-mcp) | MCP | Graphite MCP server integration (gt mcp) |
-
----
+| Skill | Description |
+|-------|-------------|
+| [graphite](skills/graphite/) | Graphite CLI stacked PR workflows |
 
 ### graphite
 
-Skill and hooks for Graphite CLI (`gt`) stacked PR workflows.
+Skill for [Graphite](https://graphite.dev) CLI (`gt`) stacked PR workflows.
 
 | Feature | Description |
 |---------|-------------|
@@ -47,27 +32,13 @@ Skill and hooks for Graphite CLI (`gt`) stacked PR workflows.
 | Commands | Uses `gt` commands instead of `git` for commits/branches |
 | Stack planning | Break features into atomic, reviewable PRs |
 | Conflict resolution | Guidance for handling restack conflicts |
-| SessionStart hook | Context when entering a Graphite repo |
 
-**Commit style:** Conventional commits (feat:, fix:, etc.), casual and concise, no LLM fluff.
+**Prerequisites:** Graphite CLI — `brew install withgraphite/tap/graphite` or `npm install -g @withgraphite/graphite-cli@stable`
 
-**PR bodies:** What changed, why, and the benefit.
-
----
-
-### graphite-mcp
-
-MCP server integration for Graphite CLI.
-
-| Feature | Description |
-|---------|-------------|
-| MCP tools | Graphite tools via Model Context Protocol |
-| Command | Uses `gt mcp` from Graphite CLI (v1.6.7+) |
-
----
+> Adapted from [georgeguimaraes/claude-code-graphite](https://github.com/georgeguimaraes/claude-code-graphite) (Apache-2.0). See [NOTICE](NOTICE) for details.
 
 ## License
 
-Copyright (c) 2026 George Guimarães
+Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for the full text.
 
-Licensed under the Apache License, Version 2.0.
+Some skills in this collection are derivative works. See [NOTICE](NOTICE) for attribution details.

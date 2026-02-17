@@ -1,11 +1,3 @@
-<!--
-  Modified from claude-code-graphite by George Guimarães
-  (https://github.com/georgeguimaraes/claude-code-graphite)
-  Licensed under the Apache License, Version 2.0.
-  Changes: Adapted from Claude Code plugin format to Cursor agent skill;
-  updated MCP server references for Cursor.
--->
----
 name: graphite
 description: |
   Use for Graphite CLI stacked PRs workflow in repos with .git/.graphite_repo_config.

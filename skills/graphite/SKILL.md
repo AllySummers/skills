@@ -9,6 +9,13 @@ description: |
   to different parent, stack out of date, update my stack. For repos WITHOUT
   .git/.graphite_repo_config, use standard git commands instead.
 ---
+<!--
+  Modified from claude-code-graphite by George Guimarães
+  (https://github.com/georgeguimaraes/claude-code-graphite)
+  Licensed under the Apache License, Version 2.0.
+  Changes: Adapted from Claude Code plugin format to Cursor agent skill;
+  updated MCP server references for Cursor.
+-->
 
 # Graphite Stacked PRs Workflow
 

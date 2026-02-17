@@ -1,3 +1,4 @@
+---
 name: graphite
 description: |
   Use for Graphite CLI stacked PRs workflow in repos with .git/.graphite_repo_config.
